@@ -16,11 +16,10 @@ class Image
     @image_bitmap.map! do |row|
       row.map! {@@white}
     end
-    # for i in 0..@height
-    #   for j in 0..@width
-    #     @image_bitmap[i][j] = @@white
-    #   end
-    # end
+  end
+
+  def colour_pixel(x, y, c)
+    @image_bitmap[y][x] = c
   end
 
   def to_s

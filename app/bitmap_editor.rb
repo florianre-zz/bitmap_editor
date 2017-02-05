@@ -16,7 +16,10 @@ class BitmapEditor
       when 'C'
         @image.clear
       when /^L (\d{1,3}) (\d{1,3}) [A-Z]$/
-        puts "colour pixel"
+        y_coord = input.scan(/\d{1,3}/)[0].to_i - 1
+        x_coord = input.scan(/\d{1,3}/)[1].to_i - 1
+        colour = input[-1]
+        @image.colour_pixel(x_coord, y_coord, colour)
       when /^V (\d{1,3}) (\d{1,3}) (\d{1,3}) [A-Z]$/
         puts "draw vertical"
       when /^H (\d{1,3}) (\d{1,3}) (\d{1,3}) [A-Z]$/
