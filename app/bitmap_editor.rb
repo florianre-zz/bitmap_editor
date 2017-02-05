@@ -10,7 +10,9 @@ class BitmapEditor
       input = gets.chomp
       case input
       when /^I (\d{1,3}) (\d{1,3})$/
-        @image = Image.new(5, 5)
+        height = input.scan(/\d{1,3}/)[0].to_i
+        width = input.scan(/\d{1,3}/)[1].to_i
+        @image = Image.new(height, width)
       when 'C'
         puts "must clear"
       when /^L (\d{1,3}) (\d{1,3}) [A-Z]$/

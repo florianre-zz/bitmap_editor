@@ -2,8 +2,8 @@ class Image
 
   attr_reader :image_bitmap
 
-  def initialize(heigth, width)
-    @image_bitmap = Array.new(heigth) { Array.new(width,'O') }
+  def initialize(height, width)
+    @image_bitmap = Array.new(height) { Array.new(width,'O') }
   end
 
   def to_s
