@@ -14,7 +14,7 @@ class BitmapEditor
         width = input.scan(/\d{1,3}/)[1].to_i
         @image = Image.new(height, width)
       when 'C'
-        puts "must clear"
+        @image.clear
       when /^L (\d{1,3}) (\d{1,3}) [A-Z]$/
         puts "colour pixel"
       when /^V (\d{1,3}) (\d{1,3}) (\d{1,3}) [A-Z]$/
