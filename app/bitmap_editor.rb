@@ -7,12 +7,24 @@ class BitmapEditor
       print '> '
       input = gets.chomp
       case input
-        when '?'
-          show_help
-        when 'X'
-          exit_console
-        else
-          puts 'unrecognised command :('
+      when /^I (\d{1,3}) (\d{1,3})$/
+        puts "create"
+      when 'C'
+        puts "must clear"
+      when /^L (\d{1,3}) (\d{1,3}) [A-Z]$/
+        puts "colour pixel"
+      when /^V (\d{1,3}) (\d{1,3}) (\d{1,3}) [A-Z]$/
+        puts "draw vertical"
+      when /^H (\d{1,3}) (\d{1,3}) (\d{1,3}) [A-Z]$/
+        puts "draw horizontal"
+      when 'S'
+        puts "must show"
+      when 'X'
+        exit_console
+      when '?'
+        show_help
+      else
+        puts 'unrecognised command :('
       end
     end
   end
@@ -34,3 +46,5 @@ S - Show the contents of the current image
 X - Terminate the session"
     end
 end
+
+BitmapEditor.new.run
