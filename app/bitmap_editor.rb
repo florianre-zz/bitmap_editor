@@ -1,3 +1,5 @@
+require './app/image.rb'
+
 class BitmapEditor
 
   def run
@@ -8,7 +10,7 @@ class BitmapEditor
       input = gets.chomp
       case input
       when /^I (\d{1,3}) (\d{1,3})$/
-        puts "create"
+        @image = Image.new(5, 5)
       when 'C'
         puts "must clear"
       when /^L (\d{1,3}) (\d{1,3}) [A-Z]$/
@@ -18,7 +20,7 @@ class BitmapEditor
       when /^H (\d{1,3}) (\d{1,3}) (\d{1,3}) [A-Z]$/
         puts "draw horizontal"
       when 'S'
-        puts "must show"
+        puts @image.to_s
       when 'X'
         exit_console
       when '?'
