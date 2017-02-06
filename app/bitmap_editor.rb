@@ -1,10 +1,13 @@
 require './app/image.rb'
+require './app/null_image.rb'
 
 class BitmapEditor
-
+  @@max_width = 250
+  @@max_height = 250
   def run
     @running = true
     puts 'type ? for help'
+    @image = NullImage.new
     while @running
       print '> '
       input = gets.chomp
