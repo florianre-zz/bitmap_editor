@@ -18,6 +18,18 @@ class Image
     end
   end
 
+  def colour_vertical(column, row_start, row_end, c)
+    for r in row_start..row_end
+      colour_pixel(column, r, c)
+    end
+  end
+
+  def colour_horizontal(row, column_start, column_end, c)
+    for col in column_start..column_end
+      colour_pixel(col, row, c)
+    end
+  end
+
   def colour_pixel(x, y, c)
     @image_bitmap[y][x] = c
   end

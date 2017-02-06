@@ -13,23 +13,39 @@ class BitmapEditor
         height = input.scan(/\d{1,3}/)[0].to_i
         width = input.scan(/\d{1,3}/)[1].to_i
         @image = Image.new(height, width)
+
       when 'C'
         @image.clear
+
       when /^L (\d{1,3}) (\d{1,3}) [A-Z]$/
-        y_coord = input.scan(/\d{1,3}/)[0].to_i - 1
-        x_coord = input.scan(/\d{1,3}/)[1].to_i - 1
+        x_coord = input.scan(/\d{1,3}/)[0].to_i - 1
+        y_coord = input.scan(/\d{1,3}/)[1].to_i - 1
         colour = input[-1]
         @image.colour_pixel(x_coord, y_coord, colour)
+
       when /^V (\d{1,3}) (\d{1,3}) (\d{1,3}) [A-Z]$/
-        puts "draw vertical"
+        x_coord = input.scan(/\d{1,3}/)[0].to_i - 1
+        y_start = input.scan(/\d{1,3}/)[1].to_i - 1
+        y_end = input.scan(/\d{1,3}/)[2].to_i - 1
+        colour = input[-1]
+        @image.colour_vertical(x_coord, y_start, y_end, colour)
+
       when /^H (\d{1,3}) (\d{1,3}) (\d{1,3}) [A-Z]$/
-        puts "draw horizontal"
+        x_start = input.scan(/\d{1,3}/)[0].to_i - 1
+        x_end = input.scan(/\d{1,3}/)[1].to_i - 1
+        y_coord = input.scan(/\d{1,3}/)[2].to_i - 1
+        colour = input[-1]
+        @image.colour_horizontal(y_coord, x_start, x_end, colour)
+
       when 'S'
         puts @image.to_s
+
       when 'X'
         exit_console
+
       when '?'
         show_help
+
       else
         puts 'unrecognised command :('
       end
