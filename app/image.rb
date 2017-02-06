@@ -1,8 +1,8 @@
-class Image
+require './app/image_interface.rb'
 
-  attr_reader :image_bitmap
-  attr_reader :height
-  attr_reader :width
+class Image < ImageInterface
+
+  attr_reader :image_bitmap, :height, :width
 
   @@white = "O"
 
