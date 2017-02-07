@@ -41,7 +41,7 @@ class BitmapEditor
         x_end = input.scan(/\d{1,3}/)[1].to_i
         y_coord = input.scan(/\d{1,3}/)[2].to_i
         colour = input[-1]
-        h_command(x_start, x_end, y_coord, colour)
+        h_command(y_coord, x_start, x_end, colour)
 
       when 'S'
         puts @image.to_s
@@ -102,7 +102,7 @@ X - Terminate the session"
 
     end
 
-    def h_command(x_start, x_end, y, colour)
+    def h_command(y, x_start, x_end, colour)
       if !(line_in_bound(y, @image.height, x_start, x_end, @image.width))
         puts "Height(width) need to be between 1 and #{@image.height}(#{@image.width})"
       elsif x_start > x_end
