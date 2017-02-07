@@ -107,5 +107,3 @@ X - Terminate the session"
     end
 
 end
-
-BitmapEditor.new.run
