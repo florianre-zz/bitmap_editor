@@ -29,29 +29,50 @@ class BitmapEditor
         @image.clear
 
       when /^L (\d{1,3}) (\d{1,3}) [A-Z]$/
-        x_coord = input.scan(/\d{1,3}/)[0].to_i - 1
-        y_coord = input.scan(/\d{1,3}/)[1].to_i - 1
+        x_coord = input.scan(/\d{1,3}/)[0].to_i
+        y_coord = input.scan(/\d{1,3}/)[1].to_i
 
-        if x_coord.between?(1, @image.width) && y_coord.between?(1, @image.height)
+        if x_coord.between?(1, @image.width) &&
+           y_coord.between?(1, @image.height)
           colour = input[-1]
-          @image.colour_pixel(x_coord, y_coord, colour)
+          @image.colour_pixel(x_coord - 1, y_coord - 1, colour)
         else
           puts "Height(width) need to be between 1 and #{@image.height}(#{@image.width})"
         end
 
       when /^V (\d{1,3}) (\d{1,3}) (\d{1,3}) [A-Z]$/
-        x_coord = input.scan(/\d{1,3}/)[0].to_i - 1
-        y_start = input.scan(/\d{1,3}/)[1].to_i - 1
-        y_end = input.scan(/\d{1,3}/)[2].to_i - 1
-        colour = input[-1]
-        @image.colour_vertical(x_coord, y_start, y_end, colour)
+        x_coord = input.scan(/\d{1,3}/)[0].to_i
+        y_start = input.scan(/\d{1,3}/)[1].to_i
+        y_end = input.scan(/\d{1,3}/)[2].to_i
+
+        if !(x_coord.between?(1, @image.width) &&
+             y_start.between?(1, @image.height) &&
+             y_end.between?(1, @image.height))
+          puts "Height(width) need to be between 1 and #{@image.height}(#{@image.width})"
+        elsif y_start > y_end
+          puts "Make sure the start of interval is less than your end of interval"
+        else
+          colour = input[-1]
+          @image.colour_vertical(x_coord - 1, y_start - 1, y_end - 1, colour)
+        end
+
+        y_end.between?(y_start, @image.height)
 
       when /^H (\d{1,3}) (\d{1,3}) (\d{1,3}) [A-Z]$/
-        x_start = input.scan(/\d{1,3}/)[0].to_i - 1
-        x_end = input.scan(/\d{1,3}/)[1].to_i - 1
-        y_coord = input.scan(/\d{1,3}/)[2].to_i - 1
-        colour = input[-1]
-        @image.colour_horizontal(y_coord, x_start, x_end, colour)
+        x_start = input.scan(/\d{1,3}/)[0].to_i
+        x_end = input.scan(/\d{1,3}/)[1].to_i
+        y_coord = input.scan(/\d{1,3}/)[2].to_i
+
+        if !(x_start.between?(1, @image.width) &&
+             x_end.between?(1, @image.width) &&
+             y_coord.between?(1, @image.height))
+          puts "Height(width) need to be between 1 and #{@image.height}(#{@image.width})"
+        elsif x_start > x_end
+          puts "Make sure the start of interval is less than your end of interval"
+        else
+          colour = input[-1]
+          @image.colour_horizontal(y_coord - 1, x_start - 1, x_end - 1, colour)
+        end
 
       when 'S'
         puts @image.to_s
