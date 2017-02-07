@@ -79,13 +79,13 @@ X - Terminate the session"
       if height.between?(1, @max_height) && width.between?(1, @max_width)
         @image = Image.new(height, width)
       else
-        puts "Height and width need to be between 1 and 250"
+        puts "Height (width) need to be between 1 and #{@image.height}(#{@image.width})."
       end
     end
 
     def l_command(x, y, colour)
       if !(x.between?(1, @image.width) && y.between?(1, @image.height))
-        puts "Height(width) need to be between 1 and #{@image.height}(#{@image.width})"
+        puts "Height (width) need to be between 1 and #{@image.height}(#{@image.width})."
       else
         @image.colour_pixel(x - 1, y-1, colour)
       end
@@ -95,7 +95,7 @@ X - Terminate the session"
       if !(line_in_bound(x, @image.width, y_start, y_end, @image.height))
         puts "Height(width) need to be between 1 and #{@image.height}(#{@image.width})"
       elsif y_start > y_end
-        puts "Make sure the start of interval is less than your end of interval"
+        puts "Make sure the start of interval is less than your end of interval."
       else
         @image.colour_vertical(x - 1, y_start - 1, y_end - 1, colour)
       end
@@ -104,9 +104,9 @@ X - Terminate the session"
 
     def h_command(y, x_start, x_end, colour)
       if !(line_in_bound(y, @image.height, x_start, x_end, @image.width))
-        puts "Height(width) need to be between 1 and #{@image.height}(#{@image.width})"
+        puts "Height (width) need to be between 1 and #{@image.height}(#{@image.width})"
       elsif x_start > x_end
-        puts "Make sure the start of interval is less than your end of interval"
+        puts "Make sure the start of interval is less than your end of interval."
       else
         @image.colour_horizontal(y - 1, x_start - 1, x_end - 1, colour)
       end
