@@ -15,7 +15,12 @@ class BitmapEditor
       when /^I (\d{1,3}) (\d{1,3})$/
         height = input.scan(/\d{1,3}/)[0].to_i
         width = input.scan(/\d{1,3}/)[1].to_i
-        @image = Image.new(height, width)
+
+        if height.between?(1, @@max_height) && width.between?(1, @@max_width)
+          @image = Image.new(height, width)
+        else
+          puts "Height and width need to be between 1 and 250"
+        end
 
       when 'C'
         @image.clear
@@ -23,8 +28,13 @@ class BitmapEditor
       when /^L (\d{1,3}) (\d{1,3}) [A-Z]$/
         x_coord = input.scan(/\d{1,3}/)[0].to_i - 1
         y_coord = input.scan(/\d{1,3}/)[1].to_i - 1
-        colour = input[-1]
-        @image.colour_pixel(x_coord, y_coord, colour)
+
+        if x_coord.between?(1, @image.width) && y_coord.between?(1, @image.height)
+          colour = input[-1]
+          @image.colour_pixel(x_coord, y_coord, colour)
+        else
+          puts "Height(width) need to be between 1 and #{@image.height}(#{@image.width})"
+        end
 
       when /^V (\d{1,3}) (\d{1,3}) (\d{1,3}) [A-Z]$/
         x_coord = input.scan(/\d{1,3}/)[0].to_i - 1
