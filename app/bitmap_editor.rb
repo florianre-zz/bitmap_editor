@@ -118,5 +118,4 @@ X - Terminate the session"
       end_interval.between?(1, max_interval)
     end
 
-
 end
