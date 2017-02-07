@@ -2,11 +2,11 @@ require './app/image_interface.rb'
 
 class NullImage < ImageInterface
 
-  attr_reader :width, :height
+  attr_reader :height, :width
 
-  def initialize
-    @width = -1
-    @height = -1
+  def initialize(height, width)
+    @height = height
+    @width = width
   end
 
   def clear
