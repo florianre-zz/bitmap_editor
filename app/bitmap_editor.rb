@@ -16,8 +16,8 @@ class BitmapEditor
 
       case input
       when /^I (\d{1,3}) (\d{1,3})$/
-        height = input.scan(/\d{1,3}/)[0].to_i
-        width = input.scan(/\d{1,3}/)[1].to_i
+        width = input.scan(/\d{1,3}/)[0].to_i
+        height = input.scan(/\d{1,3}/)[1].to_i
 
         if height.between?(1, @max_height) && width.between?(1, @max_width)
           @image = Image.new(height, width)

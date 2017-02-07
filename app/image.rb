@@ -8,8 +8,8 @@ class Image < ImageInterface
 
   def initialize(height, width)
     @height = height
-    @width = width 
-    @image_bitmap = Array.new(width) { Array.new(height, @@white) }
+    @width = width
+    @image_bitmap = Array.new(height) { Array.new(width, @@white) }
   end
 
   def clear
