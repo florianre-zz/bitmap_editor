@@ -38,21 +38,40 @@ RSpec.describe Image do
     end
 	end
 
-  # describe "colour_vertical" do
-  #   it "warns that an image has not been initialised" do
-  #     expect do
-  #       @image.colour_vertical(1, 3, 5, "C")
-  #     end.to output("#{@warning_message}\n").to_stdout
-  #   end
-  # end
+  describe "#colour_vertical" do
+    it "colours a part of a line vertically" do
+      c_colour = "C"
+      row = 1
+      start_col = 3
+      end_col = 5
+      @image.colour_vertical(row, start_col, end_col, "C")
 
-  # describe "colour_horizontal" do
-  #   it "warns that an image has not been initialised" do
-  #     expect do
-  #       @image.colour_horizontal(1, 3, 5, "C")
-  #     end.to output("#{@warning_message}\n").to_stdout
-  #   end
-  # end
+      arr = Array.new(@width, @white)
+      for i in start_col..end_col
+        arr[i] = c_colour
+      end
+      expect(@image.image_bitmap[row]).to match_array arr
+    end
+  end
+
+  describe "#colour_horizontal" do
+    it "colours a part of a line horizontally" do
+      c_colour = "C"
+      row = 1
+      start_col = 3
+      end_col = 5
+      @image.colour_horizontal(row, start_col, end_col, c_colour)
+
+      arr = Array.new(@width, @white)
+      for i in start_col..end_col
+        arr[i] = c_colour
+      end
+      expect(@image.image_bitmap[row]).to match_array arr
+      for c in start_col..end_col
+        expect(@image.image_bitmap[row][c]).to eq(c_colour)
+      end
+    end
+  end
 
   describe "#colour_pixel" do
     it "changes the specified bit to the specified colour" do
