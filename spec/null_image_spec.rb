@@ -7,7 +7,7 @@ RSpec.describe NullImage do
     @warning_message = "Image not initialized!"
   end
 
-	describe "clear" do
+	describe "#clear" do
     it "warns that an image has not been initialised" do
       expect do
         @image.clear
@@ -15,7 +15,7 @@ RSpec.describe NullImage do
     end
 	end
 
-  describe "colour_vertical" do
+  describe "#colour_vertical" do
     it "warns that an image has not been initialised" do
       expect do
         @image.colour_vertical(1, 3, 5, "C")
@@ -23,7 +23,7 @@ RSpec.describe NullImage do
     end
   end
 
-  describe "colour_horizontal" do
+  describe "#colour_horizontal" do
     it "warns that an image has not been initialised" do
       expect do
         @image.colour_horizontal(1, 3, 5, "C")
@@ -31,7 +31,7 @@ RSpec.describe NullImage do
     end
   end
 
-  describe "colour_pixel" do
+  describe "#colour_pixel" do
     it "warns that an image has not been initialised" do
       expect do
         @image.colour_pixel(3, 5, "C")
@@ -39,7 +39,7 @@ RSpec.describe NullImage do
     end
   end
 
-  describe "to_s" do
+  describe "#to_s" do
     it "warns that an image has not been initialised" do
       expect(@image.to_s).to eq(@warning_message)
     end
