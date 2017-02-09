@@ -1,2 +1,3 @@
 # bitmap_editor
-Skeleton for carwow's technical test
+Run `ruby runner.rb` to run the program.
+Run `bundle exec rspec` to run the tests.
